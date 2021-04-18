@@ -1,5 +1,5 @@
 # 06-Server-Side-APIs-Weather-Dashboard
-
+[github live page](https://vbarajas4.github.io/06-Server-Side-APIs-Weather-Dashboard/)
 
 ## User Story
 
@@ -9,8 +9,9 @@ I WANT to see the weather outlook for multiple cities
 SO THAT I can plan a trip accordingly
 ```
 
-## Acceptance Criteria
+## Project Outline
 
+In this project I was suppose to provide an application with the following functionalities. But it was a total a failure, because no matter how many examples i saw and all the research i did, I still couldnt get it to display the weather. I could fetch the data in the console but I couldnt get it to apply to my website. I had already used my tutor time and too many students had issues with this assignment, that I couldnt get all the help I needed. 
 ```
 GIVEN a weather dashboard with form inputs
 WHEN I search for a city
@@ -29,5 +30,39 @@ THEN I am again presented with current and future conditions for that city
 
 The following image shows the web application's appearance and functionality:
 
-![The weather app includes a search option, a list of cities, and a five-day forecast and current weather conditions for Atlanta.](./Assets/06-server-side-apis-homework-demo.png)
+<img width="1185" alt="weather dashboard failure" src="https://user-images.githubusercontent.com/79430431/115137178-67048080-9fd9-11eb-8b5e-1a3a861f620c.png">
 
+
+## Important Links 
+
+GitHub Repository Link
+https://github.com/vbarajas4/06-Server-Side-APIs-Weather-Dashboard
+
+Link to GitHub deployed Webpage 
+https://vbarajas4.github.io/06-Server-Side-APIs-Weather-Dashboard/
+
+
+
+## License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+<font size="2">Copyright (c) 2021 Vanessa Maldonado</font>
+
+<font size="1">Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</font> 
