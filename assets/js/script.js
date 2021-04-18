@@ -1,6 +1,7 @@
 var date = moment().format('L');
 
 var searchButton = document.querySelector('#search-btn');
+var clearEl = document.querySelector("#clear-history");
 var searchCity = document.querySelector('#search-city');
 var cityName = document.querySelector('#city-name');
 var currentPic = document.querySelector('#current-pic');
@@ -18,6 +19,7 @@ console.log(searchHistory);
 
 //Search for current city weather
 function getWeather(cityName) {
+  console.log(cityName)
 //request for city current condition from open weather map api
   var urlCityWeather = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=83f513b8e9c0bfde2e896c17f85639ab";
 
@@ -26,17 +28,45 @@ function getWeather(cityName) {
         return response.json()
         .then(function(data){
           console.log(data);
+          displayCity(data);
         })
       })
 
       .catch(function(err) {
         console.log(err);
-       alert("Wrong city name!");
+         
       })
 }
 
-//Display city
+//Display city, date, icon, temperature, humidity, wind, uv index
+function displayCity(data){
+cityName.textContent = data.name
 
+
+
+//current weather fetching 
+var lat = data.coord.lat;
+var lon = data.coord.lon;
+
+var urlOneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=83f513b8e9c0bfde2e896c17f85639ab";
+
+  fetch(urlOneCall)
+    .then(function(response){
+    return response.json()
+ })
+    .then(function(data){
+     console.log(data)
+ })
+}
+
+// create html content for current weather
+
+
+
+
+
+
+ //5day forecast
 
 
 
@@ -46,13 +76,23 @@ function getWeather(cityName) {
 
 
 //saving cities searched to local storage
-      searchButton.addEventListener('submit',function(){
+      searchButton.addEventListener('click',function(){
+        console.log('click')
         var searchInput = searchCity.value;
+        console.log(searchInput);
         getWeather(searchInput);
         searchHistory.push(searchInput);
         localStorage.setItem("search",JSON.stringify(searchHistory));
         renderSearchHistory();
       })
+
+
+    //clear history button
+      clearEl.addEventListener("click",function() {
+        searchHistory = [];
+        renderSearchHistory();
+      })
+
      //  Save user's search requests and display them underneath search form  
       function renderSearchHistory() {
         historyEl.innerHTML = "";
@@ -62,13 +102,17 @@ function getWeather(cityName) {
             historyItem.setAttribute("type","text");
             historyItem.setAttribute("readonly",true);
             historyItem.setAttribute("class", "form-control d-block bg-white");
+            console.log('is this working', searchHistory[i]);
+            
             historyItem.setAttribute("value", searchHistory[i]);
-            historyItem.addEventListener("click",function() {
-                getWeather(historyItem.value);
+            historyItem.addEventListener("click",function(event) {
+              console.log(event.target.value);
+                getWeather(event.target.value);
             })
             historyEl.append(historyItem);
         }
     }
+
 
     
 //  When page loads, automatically generate current conditions and 5-day forecast for the last city the user searched for
@@ -77,13 +121,4 @@ function getWeather(cityName) {
     if (searchHistory.length > 0) {
         getWeather(searchHistory[searchHistory.length - 1]);
     }
-
-
-
-
-        
   
-
-/*
-   var urlForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityname + "&units=imperial&appid=83f513b8e9c0bfde2e896c17f85639ab";
-*/
