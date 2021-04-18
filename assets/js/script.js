@@ -30,11 +30,12 @@ function getWeather(cityName) {
       fetch(urlCityWeather)
         .then(function(response){
         return response.json()
+        })
         .then(function(data){
           console.log(data);
           displayCity(data);
         })
-      })
+      
 
       .catch(function(err) {
         console.log(err);
@@ -44,6 +45,7 @@ function getWeather(cityName) {
 
 //Display city 
 function displayCity(data){
+  console.log(data)
 cityName.textContent = data.name
 
 
@@ -62,13 +64,9 @@ var urlOneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + 
      console.log(data)
  })
 
-
-
-
-
  //Displays searched city current weather: icon, temperature, humidity, wind, uv index
 
-$("#temperature").text = data.coord.main.temp;   
+$("#temperature").text(data.current.temp);   
 $("#humidity").text(data.current.humidity);   
 $("#speed").text(data.current.wind_speed);
 
