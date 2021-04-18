@@ -14,52 +14,16 @@ var historyEl = document.querySelector('#searchhistory')
 
 //save search history of cities (will be used later)
 var searchHistory = JSON.parse(localStorage.getItem("search")) || [];
-console.log(searchHistory);
+//console.log(searchHistory);
 
 //Display Today's Date
 $(document).ready(function(){
   $("#current-date").text(moment().format('L'));   
 });
 
-function fiveDayWeather (dailyData){
-
-  var dailyDate = new Date();
-
-  var forecastEl = document.getElementById("forecast");
-  forecastEl.innerHTML = '';
-
-  for(var i = 0; i < 5; i++){
-      dailyDate.setDate(dailyDate.getDate()+i);
-      var temp = dailyData[i].temp.day;
-      var humidityEl = dailyData[i].humidity;
-      var icon = dailyData[i].weather[0].icon;
-      var iconImage = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-      var str = 
-      `<div class="card w-70" style= "margin: 10px 10px 10px 0px">
-          <div class="card-body">
-          <span class="card-title font-weight-bold" id="date">${todayDate}</span>
-          <p class="card-text">
-              <img src="${iconImage}" alt="weatherIcon">
-              <br>
-              <span>Temperature: <span id="temp"> </span>${temp}F</span>
-              <br>
-              <span>Humidity: <span id="humid"> </span>${humidity}%</span>
-          </p>
-          </div>
-      </div>`;
-
-      var temp = document.createElement('div');
-      temp.innerHTML = str;
-      forecastEl.appendChild(temp.firstChild);
-
-  }
-}
-
-
-
 //Search for current city weather
 function getWeather(cityName) {
-  console.log(cityName)
+ // console.log(cityName)
 //request for city current condition from open weather map api
   var urlCityWeather = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=83f513b8e9c0bfde2e896c17f85639ab";
 
@@ -78,11 +42,7 @@ function getWeather(cityName) {
       })
 }
 
-
-
-
-
-//Display city, date, icon, temperature, humidity, wind, uv index
+//Display city 
 function displayCity(data){
 cityName.textContent = data.name
 
@@ -101,17 +61,34 @@ var urlOneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + 
     .then(function(data){
      console.log(data)
  })
+
+
+
+
+
+ //Displays searched city current weather: icon, temperature, humidity, wind, uv index
+
+$("#temperature").text = data.coord.main.temp;   
+$("#humidity").text(data.current.humidity);   
+$("#speed").text(data.current.wind_speed);
+
+var uvColors = document.createElement("button");
+var buttonColor;
+
+//Condtional to display UV index color variations
+if(data.current.uvi <= 2)
+{
+   buttonColor = "btn-success";
+} else if (data.current.uvi >= 3 && data.current.uvi <= 7) {
+   buttonColor = "btn-warning";
+} else {
+   buttonColor = "btn-danger";
 }
-
-// create html content for current weather
-
-
-
-
-
-
- //5day forecast
-
+uvColors.setAttribute("type", "button");
+uvColors.setAttribute("class", `btn ${buttonColor}`);
+uvColors.textContent = data.current.uvi;
+$("#uv-Index").replaceWith(uvColors);
+}
 
 
 
@@ -146,7 +123,7 @@ var urlOneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + 
             historyItem.setAttribute("type","text");
             historyItem.setAttribute("readonly",true);
             historyItem.setAttribute("class", "form-control d-block bg-white");
-            console.log(searchHistory[i]);
+           // console.log(searchHistory[i]);
             
             historyItem.setAttribute("value", searchHistory[i]);
             historyItem.addEventListener("click",function(event) {
