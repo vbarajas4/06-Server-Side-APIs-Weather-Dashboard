@@ -49,42 +49,46 @@ function displayCity(data){
 cityName.textContent = data.name
 
 
-
-//current weather fetching 
-var lat = data.coord.lat;
-var lon = data.coord.lon;
-
-var urlOneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=83f513b8e9c0bfde2e896c17f85639ab";
-
-  fetch(urlOneCall)
-    .then(function(response){
-    return response.json()
- })
-    .then(function(data){
-     console.log(data)
- })
-
  //Displays searched city current weather: icon, temperature, humidity, wind, uv index
 
-$("#temperature").text(data.current.temp);   
-$("#humidity").text(data.current.humidity);   
-$("#speed").text(data.current.wind_speed);
+$("#current-pic").text(data.weather[0].icon);
+$("#temperature").text(data.main.temp);   
+$("#humidity").text(data.main.humidity);   
+$("#wind-speed").text(data.wind.speed);
 
+let weatherPic = data.weather[0].icon;
+  currentPic.setAttribute("src","https://openweathermap.org/img/wn/" + weatherPic + "@2x.png");
+  currentPic.setAttribute("alt",data.weather[0].description);
+
+//getting uv-index
+  var lat = data.coord.lat;
+  var lon = data.coord.lon;
+  
+  var urlOneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=83f513b8e9c0bfde2e896c17f85639ab";
+  
+    fetch(urlOneCall)
+      .then(function(response){
+      return response.json()
+   })
+      .then(function(data){
+       console.log(data)
+   })
+  
 var uvColors = document.createElement("button");
 var buttonColor;
 
 //Condtional to display UV index color variations
-if(data.current.uvi <= 2)
+if(response.data.current.uvi <= 2)
 {
    buttonColor = "btn-success";
-} else if (data.current.uvi >= 3 && data.current.uvi <= 7) {
+} else if (response.data.current.uvi >= 3 && response.data.current.uvi <= 7) {
    buttonColor = "btn-warning";
 } else {
    buttonColor = "btn-danger";
 }
 uvColors.setAttribute("type", "button");
 uvColors.setAttribute("class", `btn ${buttonColor}`);
-uvColors.textContent = data.current.uvi;
+uvColors.textContent = response.data.current.uvi;
 $("#uv-Index").replaceWith(uvColors);
 }
 
