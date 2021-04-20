@@ -53,7 +53,7 @@ $("#temperature").text(data.main.temp);
 $("#humidity").text(data.main.humidity);   
 $("#wind-speed").text(data.wind.speed);
 
-let weatherPic = data.weather[0].icon;
+var weatherPic = data.weather[0].icon;
   currentPic.setAttribute("src","https://openweathermap.org/img/wn/" + weatherPic + "@2x.png");
   currentPic.setAttribute("alt",data.weather[0].description);
 
@@ -67,19 +67,19 @@ var urlOneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + 
     .then(function(res){
     return res.json()
  })
-    .then(function(uvdata){
-     console.log(uvdata);
-     getUv(uvdata)
+    .then(function(info){
+     console.log(info);
+     getUv(info)
  })
 
 }
 
-function getUv(uvdata){
-  console.log(uvdata)
-  uvEl.textContent = uvdata.current.uvi;
+function getUv(info){
+  console.log(info)
+  uvEl.textContent = info.current.uvi;
 
-  $("#UV-Index").text(uvdata.current.uvi);
-}
+  $("#UV-Index").text(info.current.uvi);
+
 /*   Not working
   let uvIndex = document.createElement("span");
   uvIndex.setAttribute("class","badge badge-danger");
@@ -108,8 +108,66 @@ console.log(uvColors)
 }*/
 
 //5days forecast
+/*
+//Get the necessary weather data that is to be displayed on the page
+  fetch(urlOneCall)
+  .then(function(resp) {
+  return resp.json()
+  .then(function(info) {
+      console.log(info);*/
+    
+      
+      //Five Day Forecast
+      var day2 = (info.daily[1].dt)*1000;
+      var day = moment(day2).format('L');
+      $('#date0').text(day);
+      var icon = info.daily[1].weather[0].icon;
+      var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+      $('#image0').attr('src', iconurl);
+      $('#main0').text(info.daily[1].weather[0].main);
+      $('#temperature0').text(info.daily[1].temp.day);                    
+      $('#humidity0').text(info.daily[1].humidity + "%");
+      
+      var day2 = (info.daily[2].dt)*1000;
+      var day = moment(day2).format('L');
+      $('#date1').text(day);
+      var icon = info.daily[2].weather[0].icon;
+      var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+      $('#image1').attr('src', iconurl);
+      $('#main1').text(info.daily[2].weather[0].main);
+      $('#temperature1').text(info.daily[2].temp.day);
+      $('#humidity1').text(info.daily[2].humidity + "%");
 
+      var day2 = (info.daily[3].dt)*1000;
+      var day = moment(day2).format("MMM-DD-YYYY");
+      $('#date2').text(day);
+      var icon = info.daily[3].weather[0].icon;
+      var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+      $('#image2').attr('src', iconurl);
+      $('#main2').text(info.daily[3].weather[0].main);
+      $('#temperature2').text(info.daily[3].temp.day);
+      $('#humidity2').text(info.daily[3].humidity + "%");
 
+      var day2 = (info.daily[4].dt)*1000;
+      var day = moment(day2).format("MMM-DD-YYYY");
+      $('#date3').text(day);
+      var icon = info.daily[4].weather[0].icon;
+      var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+      $('#image3').attr('src', iconurl);
+      $('#main3').text(info.daily[4].weather[0].main);
+      $('#temperature3').text(info.daily[4].temp.day);
+      $('#humidity3').text(info.daily[4].humidity + "%");
+
+      var day2 = (info.daily[5].dt)*1000;
+      var day = moment(day2).format("MMM-DD-YYYY");
+      $('#date4').text(day);
+      var icon = info.daily[5].weather[0].icon;
+      var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+      $('#image4').attr('src', iconurl);
+      $('#main4').text(info.daily[5].weather[0].main);
+      $('#temperature4').text(info.daily[5].temp.day);
+      $('#humidity4').text(info.daily[5].humidity + "%");
+}
 
 //saving cities searched to local storage
       searchButton.addEventListener('click',function(){
