@@ -11,7 +11,7 @@ SO THAT I can plan a trip accordingly
 
 ## Project Outline
 
-In this project I was suppose to provide an application with the following functionalities. But it was a total a failure, because no matter how many examples i saw and all the research i did, I still couldnt get it to display the weather. I could fetch the data in the console but I couldnt get it to apply to my website. I had already used my tutor time and too many students had issues with this assignment, that I couldnt get all the help I needed. 
+In this project I was suppose to provide an application with the following functionalities. 
 ```
 GIVEN a weather dashboard with form inputs
 WHEN I search for a city
@@ -31,6 +31,9 @@ THEN I am again presented with current and future conditions for that city
 The following image shows the web application's appearance and functionality:
 
 <img width="1185" alt="weather dashboard failure" src="https://user-images.githubusercontent.com/79430431/115137178-67048080-9fd9-11eb-8b5e-1a3a861f620c.png">
+
+Working Weather Dashboard
+<img width="1202" alt="Screen Shot 2021-04-20 at 2 18 22 AM" src="https://user-images.githubusercontent.com/79430431/115371486-debfe000-a17e-11eb-932f-c40ee529d204.png">
 
 
 ## Important Links 
