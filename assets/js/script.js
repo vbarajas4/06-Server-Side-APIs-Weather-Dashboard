@@ -108,36 +108,7 @@ console.log(uvColors)
 }*/
 
 //5days forecast
-/*  Needs fixing 
-var searchHistory = [];
 
-function fiveDayForecast (){
-
-  var forecastEl = document.querySelectorAll(".forecast");
-  for (i=0; i<forecastEl.length; i++) {
-      forecastEl[i].innerHTML = "";
-      var forecastIndex = [i]; ???
-      
-      
-      var forecastDateEl = document.createElement("p");
-      forecastDateEl.setAttribute("class","mt-3 mb-0 forecast-date");
-      forecastDateEl.innerHTML = (uvdata.daily[0].dt).text(moment().format('L'));
-      forecastEl[i].append(forecastDateEl);
-      
-      var forecastIconEl = document.createElement("img");
-      forecastIconEl.setAttribute("src","https://openweathermap.org/img/wn/" + uvdata.daily[i].weather[0].icon + "@2x.png");
-      forecastIconEl.setAttribute("alt",uvdata.daily[i].weather[0].description);
-      forecastEl[i].append(forecastIconEl);
-
-      var forecastTempEl = document.createElement("p");
-      forecastTempEl.innerHTML = "Temperature: " + (uvdata.daily[i].temp) + " &deg;F";
-      forecastEl[i].append(forecastTempEl);
-
-      var forecastHumidityEl = document.createElement("p");
-      forecastHumidityEl.innerHTML = "Humidity: " + uvdata.daily[0].humidity + "%";
-      forecastEls[i].append(forecastHumidityEl);
-      }
-  }*/
 
 
 //saving cities searched to local storage
