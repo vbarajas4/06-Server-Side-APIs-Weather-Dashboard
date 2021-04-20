@@ -43,14 +43,11 @@ function getWeather(cityName) {
       })
 }
 
-//Display city 
+//Displays searched city current weather: icon, temperature, humidity, wind, uv index
 function displayCity(data){
   console.log(data)
 cityName.textContent = data.name
-
-
- //Displays searched city current weather: icon, temperature, humidity, wind, uv index
-
+ 
 $("#current-pic").text(data.weather[0].icon);
 $("#temperature").text(data.main.temp);   
 $("#humidity").text(data.main.humidity);   
@@ -61,41 +58,63 @@ let weatherPic = data.weather[0].icon;
   currentPic.setAttribute("alt",data.weather[0].description);
 
 //getting uv-index
-  var lat = data.coord.lat;
-  var lon = data.coord.lon;
-  
-  var urlOneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=83f513b8e9c0bfde2e896c17f85639ab";
-  
-    fetch(urlOneCall)
-      .then(function(response){
-      return response.json()
-   })
-      .then(function(data){
-       console.log(data)
-   })
+var lat = data.coord.lat;
+var lon = data.coord.lon;
+
+var urlOneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=83f513b8e9c0bfde2e896c17f85639ab";
+
+  fetch(urlOneCall)
+    .then(function(res){
+    return res.json()
+ })
+    .then(function(uvdata){
+     console.log(uvdata);
+     getUv(uvdata)
+ })
+
+}
+
+function getUv(uvdata){
+  console.log(uvdata)
+  uvEl.textContent = uvdata.current.uvi;
+
+  $("#UV-Index").text(uvdata.current.uvi);
+}
+/*
+  let uvIndex = document.createElement("span");
+  uvIndex.setAttribute("class","badge badge-danger");
+  uvIndex.innerHTML = data.current.uvi;
+  currentUV.innerHTML = "uvIndex: ";
+  currentUV.append(uvIndex);
   
 var uvColors = document.createElement("button");
 var buttonColor;
 
 //Condtional to display UV index color variations
-if(response.data.current.uvi <= 2)
+if(data.current.uvi <= 2)
 {
-   buttonColor = "btn-success";
-} else if (response.data.current.uvi >= 3 && response.data.current.uvi <= 7) {
-   buttonColor = "btn-warning";
+ buttonColor = "btn-success";
+} else if (data.current.uvi >= 3 && data.current.uvi <= 7) {
+ buttonColor = "btn-warning";
 } else {
-   buttonColor = "btn-danger";
+ buttonColor = "btn-danger";
 }
 uvColors.setAttribute("type", "button");
 uvColors.setAttribute("class", `btn ${buttonColor}`);
-uvColors.textContent = response.data.current.uvi;
+uvColors.textContent = data.current.uvi;
 $("#uv-Index").replaceWith(uvColors);
-}
+console.log(uvColors)
 
+}*/
 
+//5days forecast
 
+var searchHistory = [];
 
+function fiveDayForecast (forecast){
 
+  
+  }
 
 
 //saving cities searched to local storage
