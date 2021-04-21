@@ -51,7 +51,7 @@ cityName.textContent = data.name
 $("#current-pic").text(data.weather[0].icon);
 $("#temperature").text(data.main.temp);   
 $("#humidity").text(data.main.humidity);   
-$("#wind-speed").text(data.wind.speed);chjhjhh
+$("#wind-speed").text(data.wind.speed);
 
 var weatherPic = data.weather[0].icon;
   currentPic.setAttribute("src","https://openweathermap.org/img/wn/" + weatherPic + "@2x.png");
