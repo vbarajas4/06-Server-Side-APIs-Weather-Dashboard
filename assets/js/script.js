@@ -76,26 +76,31 @@ var urlOneCall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + 
 
 function getUv(info){
   console.log(info)
-  uvEl.textContent = info.current.uvi;
+ //uvEl.textContent = info.current.uvi;
 
-  $("#UV-Index").text(info.current.uvi);
+  $("#UV-index").text(info.current.uvi);
 
-  /*Not Working
-  var uvEl = info.current.uvi;
+ 
+  var currentUvi = info.current.uvi;
   var bgcolor;
-  if (uvEl <= 3) {
+  if (currentUvi <= 3) {
       bgcolor = "green";
+     
   }
-  else if (uvEl >= 3 || uvEl <= 6) {
+  else if (currentUvi >= 3 || currentUvi <= 6) {
       bgcolor = "yellow";
+      
   }
-  else if (uvEl >= 6 || uvEl <= 8) {
+  else if (currentUvi >= 6 || currentUvi <= 8) {
       bgcolor = "orange";
+      
   }
   else {
       bgcolor = "red";
   }
-*/
+  $("#UV-index").css("background-color", bgcolor);
+ 
+
 
 
 //5days forecast

@@ -44,7 +44,23 @@ https://github.com/vbarajas4/06-Server-Side-APIs-Weather-Dashboard
 Link to GitHub deployed Webpage 
 https://vbarajas4.github.io/06-Server-Side-APIs-Weather-Dashboard/
 
+## Framework/Technolgies
 
+HTML 
+
+CSS
+
+JQuery
+
+Local Storage
+
+[OpenWeatherMap API](http://openweathermap.org/)
+
+## Contact Information
+
+[Email](vbarajas4@gmail.com)
+
+[LinkIn](https://www.linkedin.com/in/vanessa-maldonado-90668110a/)
 
 ## License
 
